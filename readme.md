@@ -1,15 +1,16 @@
 # To add
+* Room ✅
+* Retrofit ✅
+* Flow ✅
+* LiveData ✅
+* View Models ✅
 * Koin
-* Room
-* Retrofit
-* Flow
-* LiveData
-* View Models
 
 # Features
-* Read from Cloud Movies
+* Read from Cloud Movies ✅
+* Save in DB ✅
+* Observe from DB ✅
+* Add guest account to post to favorites
 * Read from Cloud Starred in parallel (flow.combine)
-* Save in DB
-* Observe from DB
 * Update DB with optimistic approach
 * Either for Results
