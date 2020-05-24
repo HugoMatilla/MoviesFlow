@@ -1,19 +1,23 @@
-package com.hugomatilla.moviesflow;
+package com.hugomatilla.moviesflow
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class MoviesAdapter(private val itemClick: (Movie) -> Unit) :
+class MoviesAdapter(
+    private val itemClick: (Movie) -> Unit,
+    private val itemLongClick: (Movie) -> Boolean
+) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     private var movies = emptyList<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
-        return ViewHolder(view, itemClick)
+        return ViewHolder(view, itemClick, itemLongClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -27,13 +31,19 @@ class MoviesAdapter(private val itemClick: (Movie) -> Unit) :
         notifyDataSetChanged()
     }
 
-    class ViewHolder(view: View, private val itemClick: (Movie) -> Unit) :
+    class ViewHolder(
+        view: View,
+        private val itemClick: (Movie) -> Unit,
+        private val itemLongClick: (Movie) -> Boolean
+    ) :
         RecyclerView.ViewHolder(view) {
         fun bindArticle(movie: Movie) {
             with(movie) {
                 itemView.title.text = title
                 itemView.star.visibility = if (starred) View.VISIBLE else View.INVISIBLE
                 itemView.setOnClickListener { itemClick(this) }
+                itemView.setOnLongClickListener { itemLongClick(this) }
+                itemView.image.load("$IMAGE_BASE_URL${movie.image}")
             }
         }
     }

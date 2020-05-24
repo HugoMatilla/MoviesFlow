@@ -14,13 +14,19 @@ import kotlin.coroutines.CoroutineContext
 class MainActivity : AppCompatActivity(), CoroutineScope {
 
     private val viewModel: MoviesViewModel by viewModels()
-    private val movieAdapter by lazy { MoviesAdapter { starMovie(it) } }
 
-    private fun starMovie(movie: Movie) {
+    //    private val movieAdapter by lazy { MoviesAdapter { starMovie(it) } }
+    private val movieAdapter by lazy { MoviesAdapter({ startDetail(it) }, { starMovie(it) }) }
+
+    private fun startDetail(movie: Movie) {
+        MovieDetailActivity.start(this, movie.id)
+    }
+
+    private fun starMovie(movie: Movie): Boolean {
         launch {
             dao.starMovieById(movie.id, !movie.starred)
         }
-
+        return true
     }
 
     private val service by lazy { MovieCloudServiceImpl().create() }
@@ -37,6 +43,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             movies.also { println("🚛 $it") }
         }
         initAdapter()
+        getDataFromCloud()
 
     }
 
@@ -51,7 +58,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         launch {
             val result = service.getMovies(API_KEY)
             dao.insertAll(result.movies)
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
                 swipeToRefresh.isRefreshing = false
             }
         }

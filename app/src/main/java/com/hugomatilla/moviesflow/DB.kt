@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase
     entities = [
         (Movie::class)
     ],
-    version = 2
+    version = 6
 )
 abstract class DB : RoomDatabase() {
 
