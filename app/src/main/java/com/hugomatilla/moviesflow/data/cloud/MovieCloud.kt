@@ -1,6 +1,7 @@
-package com.hugomatilla.moviesflow
+package com.hugomatilla.moviesflow.data.cloud
 
 import com.google.gson.annotations.SerializedName
+import com.hugomatilla.moviesflow.data.db.Movie
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

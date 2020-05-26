@@ -1,4 +1,4 @@
-package com.hugomatilla.moviesflow
+package com.hugomatilla.moviesflow.data.cloud
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +11,8 @@ const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
 class MovieCloudServiceImpl {
 
-  fun create(): MovieApiService = getRestService().create(MovieApiService::class.java)
+  fun create(): MovieApiService = getRestService().create(
+      MovieApiService::class.java)
 
   private fun getRestService(): Retrofit {
     val loggingInterceptor = HttpLoggingInterceptor()

@@ -1,10 +1,13 @@
-package com.hugomatilla.moviesflow
+package com.hugomatilla.moviesflow.home.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.hugomatilla.moviesflow.R
+import com.hugomatilla.moviesflow.data.cloud.IMAGE_BASE_URL
+import com.hugomatilla.moviesflow.data.db.Movie
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MoviesAdapter(
@@ -17,7 +20,11 @@ class MoviesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
-        return ViewHolder(view, itemClick, itemLongClick)
+        return ViewHolder(
+            view,
+            itemClick,
+            itemLongClick
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

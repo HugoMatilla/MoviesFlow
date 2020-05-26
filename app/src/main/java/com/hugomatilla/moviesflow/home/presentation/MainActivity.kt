@@ -1,21 +1,27 @@
-package com.hugomatilla.moviesflow
+package com.hugomatilla.moviesflow.home.presentation
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hugomatilla.moviesflow.R
+import com.hugomatilla.moviesflow.data.cloud.API_KEY
+import com.hugomatilla.moviesflow.data.cloud.MovieCloudServiceImpl
+import com.hugomatilla.moviesflow.data.db.AppDB
+import com.hugomatilla.moviesflow.data.db.Movie
+import com.hugomatilla.moviesflow.detail.MovieDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
 
-    private val viewModel: MoviesViewModel by viewModels()
+    //    private val viewModel: MoviesViewModel by viewModels()
+    private val viewModel: MoviesViewModel by viewModel()
 
-    //    private val movieAdapter by lazy { MoviesAdapter { starMovie(it) } }
     private val movieAdapter by lazy { MoviesAdapter({ startDetail(it) }, { starMovie(it) }) }
 
     private fun startDetail(movie: Movie) {
@@ -23,25 +29,21 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun starMovie(movie: Movie): Boolean {
-        launch {
-            dao.starMovieById(movie.id, !movie.starred)
-        }
-        return true
+        launch { dao.starMovieById(movie.id, !movie.starred) }
+        return true // For the LongClick
     }
 
     private val service by lazy { MovieCloudServiceImpl().create() }
-    private val dao by lazy { DB.getInstance().movieDao() }
+    private val dao by lazy { AppDB.getInstance().movieDao() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DB.init(this)
+        AppDB.init(this)
 
-        viewModel.data.observeForever { movies ->
-            (list.adapter as MoviesAdapter).setItems(movies)
-            movies.also { println("🚛 $it") }
-        }
+        viewModel.data.observeForever { (list.adapter as MoviesAdapter).setItems(it) }
+
         initAdapter()
         getDataFromCloud()
 

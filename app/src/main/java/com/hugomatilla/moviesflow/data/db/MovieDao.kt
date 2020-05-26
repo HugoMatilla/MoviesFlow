@@ -1,4 +1,4 @@
-package com.hugomatilla.moviesflow
+package com.hugomatilla.moviesflow.data.db
 
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
@@ -30,7 +30,8 @@ data class Movie(
 )
 
 @Dao
-interface MovieDao : BaseDao<Movie> {
+interface MovieDao :
+    BaseDao<Movie> {
 
     @Query("SELECT * FROM $tableName WHERE $ID=:id")
     suspend fun getById(id: Long): List<Movie>

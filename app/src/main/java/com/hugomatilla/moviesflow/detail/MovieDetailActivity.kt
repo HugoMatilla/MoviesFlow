@@ -1,9 +1,13 @@
-package com.hugomatilla.moviesflow
+package com.hugomatilla.moviesflow.detail
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.hugomatilla.moviesflow.R
+import com.hugomatilla.moviesflow.data.cloud.API_KEY
+import com.hugomatilla.moviesflow.data.cloud.MovieCloudServiceImpl
+import com.hugomatilla.moviesflow.data.db.AppDB
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,8 +25,9 @@ class MovieDetailActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    private val service by lazy { MovieCloudServiceImpl().create() }
-    private val dao by lazy { DB.getInstance().movieDao() }
+    private val service by lazy { MovieCloudServiceImpl()
+        .create() }
+    private val dao by lazy { AppDB.getInstance().movieDao() }
     private val id by lazy { intent.getLongExtra(ID, 0) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +39,9 @@ class MovieDetailActivity : AppCompatActivity(), CoroutineScope {
     private fun getDataFromCloud() {
         swipeToRefresh.isRefreshing = true
         launch {
-            val movie = service.getMovie(id, API_KEY)
+            val movie = service.getMovie(id,
+                API_KEY
+            )
             withContext(Dispatchers.Main) {
                 swipeToRefresh.isRefreshing = false
                 overview.text = """
