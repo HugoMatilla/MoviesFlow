@@ -5,7 +5,7 @@
 * Flow ✅
 * LiveData ✅
 * View Models ✅
-* Koin
+* Koin ✅
 
 # Features
 * Read from Cloud Movies ✅
@@ -15,7 +15,6 @@
 * Read from Cloud Starred in parallel (`flow.combine`)
 * Update DB with optimistic approach
 * Either for Results
-* StateFlow
+* StateFlow ✅
 
 # TODO
-* Init DB automatically with Koin App Context

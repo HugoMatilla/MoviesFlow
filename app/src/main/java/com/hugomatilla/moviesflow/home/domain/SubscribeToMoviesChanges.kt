@@ -12,7 +12,11 @@ class SubscribeToMoviesChanges() : BaseUseCase, KoinComponent {
 
     private val repo: MoviesRepository by inject()
 
-    override fun execute(dispatcher: CoroutineDispatcher): Flow<List<Movie>> {
+    override suspend fun execute(dispatcher: CoroutineDispatcher): Flow<List<Movie>> {
+        return repo.getDB().movieDao().getAll()
+    }
+
+    fun execute2(dispatcher: CoroutineDispatcher): Flow<List<Movie>> {
         return repo.getDB().movieDao().getAll()
     }
 }

@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import org.koin.java.KoinJavaComponent.inject
 
 class MoviesViewModel : ViewModel(), KoinComponent {
 

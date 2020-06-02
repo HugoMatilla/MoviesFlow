@@ -17,6 +17,6 @@ interface MovieApiService {
     suspend fun getMovie(@Path("id") id: Long, @Query("api_key") apiKey: String): Movie
 }
 
-class MoviesResponse(
+data class MoviesResponse(
     @SerializedName("results") val movies: List<Movie>
 )

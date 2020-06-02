@@ -25,8 +25,7 @@ class MovieDetailActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    private val service by lazy { MovieCloudServiceImpl()
-        .create() }
+    private val service by lazy { MovieCloudServiceImpl().create() }
     private val dao by lazy { AppDB.getInstance().movieDao() }
     private val id by lazy { intent.getLongExtra(ID, 0) }
 
@@ -39,7 +38,8 @@ class MovieDetailActivity : AppCompatActivity(), CoroutineScope {
     private fun getDataFromCloud() {
         swipeToRefresh.isRefreshing = true
         launch {
-            val movie = service.getMovie(id,
+            val movie = service.getMovie(
+                id,
                 API_KEY
             )
             withContext(Dispatchers.Main) {

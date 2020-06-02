@@ -4,5 +4,5 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 interface BaseUseCase {
-    fun execute(dispatcher: CoroutineDispatcher = Dispatchers.IO): Any
+    suspend fun execute(dispatcher: CoroutineDispatcher = Dispatchers.IO): Any
 }

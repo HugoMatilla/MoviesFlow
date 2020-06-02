@@ -6,8 +6,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val BASE_URL = "https://api.themoviedb.org/"
-const val API_KEY = "093aa515aa2aac842743586209c0319f"
-const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
+//const val API_KEY = "093aa515aa2aac842743586209c0319f"
+//const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
 class MovieCloudServiceImpl {
 

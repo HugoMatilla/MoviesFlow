@@ -19,29 +19,19 @@ abstract class AppDB : RoomDatabase() {
         private var instance: AppDB? = null
 
         fun init(context: Context) {
-            if (instance == null) synchronized(
-                AppDB::class) { instance =
-                buildDB(
-                    context
-                )
-            }
+            if (instance == null) synchronized(AppDB::class) { instance = buildDB(context) }
         }
 
         private fun buildDB(context: Context) =
-            Room.databaseBuilder(context, AppDB::class.java,
-                DB_NAME
-            )
+            Room.databaseBuilder(context, AppDB::class.java, DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
 
         fun getInstance() = instance
             ?: run {
-            Log.wtf(
-                "Room",
-                "Room Database not initialized. Call `com.hugomatilla.moviesflow.com.hugomatilla.moviesflow.data.db.AppDB.init(context)` first"
-            )
-            throw(IllegalAccessError())
-        }
+                Log.wtf("Room", "Room Database not initialized. Call `AppDB.init(context)` first")
+                throw(IllegalAccessError())
+            }
 
         private fun destroyInstance() {
             instance = null

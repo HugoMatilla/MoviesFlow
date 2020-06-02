@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.hugomatilla.moviesflow"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -69,5 +69,9 @@ dependencies {
     def koin_version = "2.1.5"
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    //
+    implementation 'hu.autsoft:krate:0.4.0'
+    implementation "androidx.security:security-crypto:1.0.0-rc02"
 
 }
