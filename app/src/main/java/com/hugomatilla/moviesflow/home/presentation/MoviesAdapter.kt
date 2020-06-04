@@ -50,7 +50,7 @@ class MoviesAdapter(
                 itemView.star.visibility = if (starred) View.VISIBLE else View.INVISIBLE
                 itemView.setOnClickListener { itemClick(this) }
                 itemView.setOnLongClickListener { itemLongClick(this) }
-                itemView.image.load("$IMAGE_BASE_URL${movie.image}")
+                itemView.image.load("$IMAGE_BASE_URL${movie.poster}")
             }
         }
     }
