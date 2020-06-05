@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="200dp"
-    android:layout_height="300dp"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_margin="4dp"
+  android:checkable="true"
+  android:clickable="true"
+  android:focusable="true"
+  android:padding="4dp"
+  app:cardElevation="2dp">
+
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="120dp"
+    android:layout_height="180dp"
     android:orientation="vertical">
 
 
     <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/image"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scaleType="centerCrop"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/star"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_margin="12dp"
-        android:gravity="end"
-        android:text="📌"
-        android:textSize="20dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/star"
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:layout_margin="12dp"
+      android:gravity="end"
+      android:text="☑️"
+      android:textSize="20dp"
+      android:visibility="invisible"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#99ffffff"
-        android:gravity="center"
-        android:text="Movie"
-        android:textSize="26dp"
-        app:layout_constraintBottom_toBottomOf="@id/image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+      android:id="@+id/title"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:background="#44ffffff"
+      android:gravity="center"
+      android:text="Movie"
+      android:textAppearance="?attr/textAppearanceBody1"
+      app:layout_constraintBottom_toBottomOf="@id/image"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
 
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#550066"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

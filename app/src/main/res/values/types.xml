@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="TextAppearance.AppCompat.Headline.MoviesFlow">
+    <item name="android:textStyle">normal</item>
+    <item name="fontFamily">@font/comfortaa_bold</item>
+  </style>
+
+  <style name="TextAppearance.AppCompat.Body1.MoviesFlow">
+    <item name="android:textStyle">normal</item>
+    <item name="fontFamily">@font/comfortaa_light</item>
+  </style>
+
+  <style name="TextAppearance.AppCompat.Caption.MoviesFlow">
+    <item name="android:textStyle">normal</item>
+    <item name="fontFamily">@font/comfortaa_regular</item>
+  </style>
+
+</resources>
