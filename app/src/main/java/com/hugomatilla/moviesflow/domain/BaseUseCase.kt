@@ -1,8 +1,15 @@
 package com.hugomatilla.moviesflow.domain
 
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineScope
 
 interface BaseUseCase {
-    suspend fun execute(dispatcher: CoroutineDispatcher = Dispatchers.IO): Any
+    fun execute(): Any
+}
+
+interface BaseUseCaseSuspended {
+    suspend fun execute(): Any
+}
+
+interface BaseUseCaseScoped {
+    fun execute(scope: CoroutineScope): Any
 }

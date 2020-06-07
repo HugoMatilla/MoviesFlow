@@ -13,6 +13,10 @@ interface MovieApiService {
     @GET("/3/movie/popular")
     suspend fun getMovies(@Query("api_key") apiKey: String): MoviesResponse
 
+    // 2014-10-22
+    @GET("/3/discover/movie")
+    suspend fun getNewMovies(@Query("api_key") apiKey: String, @Query("primary_release_date.gte") after: String): MoviesResponse
+
     @GET("/3/movie/{id}")
     suspend fun getMovie(@Path("id") id: Long, @Query("api_key") apiKey: String): Movie
 }

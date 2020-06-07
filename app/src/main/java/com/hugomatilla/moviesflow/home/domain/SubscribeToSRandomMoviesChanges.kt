@@ -1,8 +1,8 @@
 package com.hugomatilla.moviesflow.home.domain
 
 import com.hugomatilla.moviesflow.data.SessionRepository
-import com.hugomatilla.moviesflow.domain.BaseUseCase
-import kotlinx.coroutines.CoroutineDispatcher
+import com.hugomatilla.moviesflow.domain.BaseUseCaseSuspended
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,14 +17,14 @@ import org.koin.core.inject
 //
 //data class RandomMovie(val title: String, val overview: String, val imageUrl: String)
 
-class SubscribeToRandomMoviesUseCaSe() : BaseUseCase, KoinComponent {
+class SubscribeToRandomMoviesUseCaSe() : BaseUseCaseSuspended, KoinComponent {
 
     private val repo: SessionRepository by inject()
     val data = MutableStateFlow("empty")
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    override suspend fun execute(dispatcher: CoroutineDispatcher): StateFlow<String> {
-        GlobalScope.launch(dispatcher) {
+    override suspend fun execute(): StateFlow<String> {
+        GlobalScope.launch(Dispatchers.IO) {
             repo.subscribeToRandomMovieUpdates().collect {
                 data.value = if (it.isEmpty()) "empty" else it
             }
@@ -33,9 +33,9 @@ class SubscribeToRandomMoviesUseCaSe() : BaseUseCase, KoinComponent {
     }
 }
 
-class UpdateRandomMovieUseCaSe() : BaseUseCase, KoinComponent {
+class UpdateRandomMovieUseCaSe() : BaseUseCaseSuspended, KoinComponent {
     private val repo: SessionRepository by inject()
-    override suspend fun execute(dispatcher: CoroutineDispatcher) {
+    override suspend fun execute() {
         repo.updateRandomMovie()
     }
 }

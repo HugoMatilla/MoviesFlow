@@ -4,9 +4,7 @@ import com.hugomatilla.moviesflow.data.MoviesRepository
 import com.hugomatilla.moviesflow.data.SessionRepository
 import com.hugomatilla.moviesflow.data.cloud.CloudService
 import com.hugomatilla.moviesflow.data.local.LocalCache
-import com.hugomatilla.moviesflow.home.domain.SubscribeToMoviesChanges
-import com.hugomatilla.moviesflow.home.domain.SubscribeToRandomMoviesUseCaSe
-import com.hugomatilla.moviesflow.home.domain.UpdateRandomMovieUseCaSe
+import com.hugomatilla.moviesflow.home.domain.*
 import com.hugomatilla.moviesflow.home.presentation.MoviesViewModel
 import com.hugomatilla.moviesflow.random_movie.RandomMovieViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -22,6 +20,8 @@ val appModule = module {
     factory { SubscribeToMoviesChanges() }
     single { SubscribeToRandomMoviesUseCaSe() }
     single { UpdateRandomMovieUseCaSe() }
+    factory { GetNewMoviesUseCase() }
+    factory { SubscribeToNewMoviesChangesUseCase() }
 
     viewModel { MoviesViewModel() }
     viewModel { RandomMovieViewModel() }

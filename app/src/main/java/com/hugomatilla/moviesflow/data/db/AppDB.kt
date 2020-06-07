@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 
 private const val DB_NAME = "movies.db"
 
-@Database(entities = [(Movie::class)], version = 1)
+@Database(entities = [(Movie::class)], version = 2)
 abstract class AppDB : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao

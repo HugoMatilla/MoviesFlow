@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import hu.autsoft.krate.Krate
+import hu.autsoft.krate.booleanPref
 import hu.autsoft.krate.stringPref
 
 class LocalCache(context: Context) : Krate {
@@ -17,5 +18,6 @@ class LocalCache(context: Context) : Krate {
 
     var sessionId by stringPref("sessionId", "")
     var randomMovie by stringPref("randomMovie", "")
+    var isDarkMode by booleanPref("isDarkMode", true)
 
 }

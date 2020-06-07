@@ -22,8 +22,8 @@ data class Movie(
     @SerializedName("original_title") @ColumnInfo(name = TITLE) var title: String,
     @SerializedName("overview") @ColumnInfo(name = OVERVIEW) var overview: String,
     @SerializedName("vote_average") @ColumnInfo(name = RATING) var rating: Float,
-    @SerializedName("poster_path") @ColumnInfo(name = POSTER) var poster: String,
-    @SerializedName("backdrop_path") @ColumnInfo(name = IMAGE) var image: String,
+    @SerializedName("poster_path") @ColumnInfo(name = POSTER) var poster: String? = DEFAULT_IMAGE_URL,
+    @SerializedName("backdrop_path") @ColumnInfo(name = IMAGE) var image: String? = DEFAULT_IMAGE_URL,
     @SerializedName("release_date") @ColumnInfo(name = RELEASE_DATE) var release_date: String,// TODO  How to convert to Date in DB
     @SerializedName("budget") @ColumnInfo(name = BUDGET) var budget: Int?, // In Detail
     @ColumnInfo(name = STARRED) var starred: Boolean
@@ -42,6 +42,9 @@ interface MovieDao :
     @Query("UPDATE $tableName SET $STARRED = :starred WHERE $ID=:id")
     fun starMovieById(id: Long, starred: Boolean)
 
+    @Query("SELECT * FROM $tableName  WHERE $RELEASE_DATE>=:date ORDER BY $RELEASE_DATE DESC")
+    fun getNew(date: String): Flow<List<Movie>>
+
 }
 
 interface BaseDao<T> {
@@ -55,3 +58,5 @@ interface BaseDao<T> {
     @Query("DELETE FROM $tableName")
     suspend fun deleteAll()
 }
+
+const val DEFAULT_IMAGE_URL = "https://images.unsplash.com/photo-1535392432937-a27c36ec07b5?fit=crop&w=800&q=80"

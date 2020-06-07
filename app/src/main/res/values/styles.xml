@@ -1,4 +1,7 @@
 <resources>
 
-
+  <style name="Widget.MoviesFlow.Toolbar" parent="Widget.AppCompat.Toolbar">
+    <item name="titleTextColor">@color/md_white_1000</item>
+    <item name="titleTextAppearance">@style/TextAppearance.AppCompat.Headline.MoviesFlow</item>
+  </style>
 </resources>

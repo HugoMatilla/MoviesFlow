@@ -1,12 +1,11 @@
 <resources>
 
   <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+  <style name="Base.Theme.MoviesFlow" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <!--COLOR-->
-    <item name="colorPrimarySurface">@color/purple_dark</item>
-    <item name="colorPrimary">@color/purple</item>
-    <item name="colorPrimaryDark">@color/purple_dark</item>
-    <item name="colorPrimaryVariant">@color/turquoise</item>
+    <item name="android:windowBackground">@color/brand_blue_dark</item>
+    <item name="colorPrimarySurface">@color/brand_blue_dark</item>
+    <item name="colorError">@color/md_red_900</item>
 
     <!--TEXT-->
     <item name="textAppearanceBody1">@style/TextAppearance.AppCompat.Body1.MoviesFlow</item>
@@ -16,6 +15,26 @@
     <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MaterialComponents.MoviesFlow</item>
     <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MaterialComponents.MoviesFlow</item>
     <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MaterialComponents.MoviesFlow</item>
+  </style>
+
+  <style name="Theme.MoviesFlow" parent="Base.Theme.MoviesFlow">
+    <!--COLOR-->
+    <item name="colorPrimaryDark">@color/brand_blue_dark</item>
+    <item name="colorPrimary">@color/brand_blue</item>
+    <item name="colorOnPrimary">@color/md_white_1000</item>
+
+    <item name="colorSecondary">@color/brand_teal</item>
+    <item name="colorOnSecondary">@color/md_grey_900</item>
+    <item name="colorSecondaryVariant">@color/brand_teal_dark</item>
+
+    <item name="colorSurface">@color/md_white_1000</item>
+    <item name="colorOnSurface">@color/md_black_1000</item>
+  </style>
+
+  <style name="Theme.MoviesFlow.Toolbar.Menu" parent="">
+    <item name="actionMenuTextColor">?attr/colorOnPrimary</item>
+    <item name="android:actionMenuTextColor">?attr/colorOnPrimary</item>
+    <item name="actionMenuTextAppearance">@style/TextAppearance.MoviesFlow.MDI</item>
   </style>
 
 </resources>

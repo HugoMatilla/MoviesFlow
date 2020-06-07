@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="theme_icon" translatable="false">&#xF0E0;</string>
+  <string name="theme_type" translatable="false">dark</string>
+</resources>

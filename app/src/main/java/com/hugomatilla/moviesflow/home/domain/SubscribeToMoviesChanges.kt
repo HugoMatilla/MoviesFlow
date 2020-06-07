@@ -3,7 +3,6 @@ package com.hugomatilla.moviesflow.home.domain
 import com.hugomatilla.moviesflow.data.MoviesRepository
 import com.hugomatilla.moviesflow.data.db.Movie
 import com.hugomatilla.moviesflow.domain.BaseUseCase
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -12,11 +11,8 @@ class SubscribeToMoviesChanges() : BaseUseCase, KoinComponent {
 
     private val repo: MoviesRepository by inject()
 
-    override suspend fun execute(dispatcher: CoroutineDispatcher): Flow<List<Movie>> {
-        return repo.getDB().movieDao().getAll()
+    override fun execute(): Flow<List<Movie>> {
+        return repo.subscribeToAllMoviesChanges()
     }
 
-    fun execute2(dispatcher: CoroutineDispatcher): Flow<List<Movie>> {
-        return repo.getDB().movieDao().getAll()
-    }
 }

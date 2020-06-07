@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple">#6200EE</color>
-    <color name="purple_dark">#3700B3</color>
-    <color name="turquoise">#03DAC5</color>
+  <color name="brand_blue">#2859B8</color>
+  <color name="brand_blue_dark">#18356e</color>
+  <color name="brand_blue_super_dark">#102349</color>
+  <color name="brand_teal">#10C891</color>
+  <color name="brand_teal_dark">#086448</color>
+  <color name="brand_teal_super_dark">#06503a</color>
 </resources>

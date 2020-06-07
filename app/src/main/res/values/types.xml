@@ -16,4 +16,8 @@
     <item name="fontFamily">@font/comfortaa_regular</item>
   </style>
 
+  <style name="TextAppearance.MoviesFlow.MDI" parent="TextAppearance.AppCompat.Headline">
+    <item name="fontFamily">@font/mdi_regular</item>
+  </style>
+
 </resources>
