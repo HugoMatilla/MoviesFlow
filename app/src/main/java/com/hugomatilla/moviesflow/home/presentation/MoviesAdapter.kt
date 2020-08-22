@@ -20,11 +20,7 @@ class MoviesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
-        return ViewHolder(
-            view,
-            itemClick,
-            itemLongClick
-        )
+        return ViewHolder(view, itemClick, itemLongClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -38,11 +34,7 @@ class MoviesAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(
-        view: View,
-        private val itemClick: (Movie) -> Unit,
-        private val itemLongClick: (Movie) -> Boolean
-    ) :
+    class ViewHolder(view: View, private val itemClick: (Movie) -> Unit, private val itemLongClick: (Movie) -> Boolean) :
         RecyclerView.ViewHolder(view) {
         fun bindArticle(movie: Movie) {
             with(movie) {

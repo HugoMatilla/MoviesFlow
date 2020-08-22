@@ -22,6 +22,7 @@ val appModule = module {
     single { UpdateRandomMovieUseCaSe() }
     factory { GetNewMoviesUseCase() }
     factory { SubscribeToNewMoviesChangesUseCase() }
+    factory { SubscribeToFavMoviesChanges() }
 
     viewModel { MoviesViewModel() }
     viewModel { RandomMovieViewModel() }

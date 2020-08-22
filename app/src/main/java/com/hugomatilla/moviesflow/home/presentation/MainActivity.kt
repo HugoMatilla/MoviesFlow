@@ -2,9 +2,12 @@ package com.hugomatilla.moviesflow.home.presentation
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hugomatilla.moviesflow.R
 import com.hugomatilla.moviesflow.data.cloud.API_KEY
@@ -26,9 +29,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     private val service: MovieApiService by inject()
     private val cache: LocalCache by inject()
 
-    private val movieAdapter by lazy { MoviesAdapter({ startDetail(it) }, { starMovie(it) }) }
-    private val movieAdapter2 by lazy { MoviesAdapter({}, { true }) }
-    private val movieAdapter3 by lazy { MoviesAdapter({}, { true }) }
+    private val movieAdapter0 by lazy { MoviesAdapter({ startDetail(it) }, { starMovie(it) }) }
+    private val movieAdapter1 by lazy { MoviesAdapter({ startDetail(it) }, { starMovie(it) }) }
+    private val movieAdapter2 by lazy { MoviesAdapter({ startDetail(it) }, { starMovie(it) }) }
+    private val movieAdapter3 by lazy { MoviesAdapter({ startDetail(it) }, { starMovie(it) }) }
 
     private fun startDetail(movie: Movie) {
         MovieDetailActivity.start(this, movie.id)
@@ -49,18 +53,47 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         initAdapter()
         setUpViewModel()
         getDataFromCloud()
-        goToRandom.setOnClickListener { RandomMovieActivity.start(this@MainActivity) }
+        goToRandom.setOnClickListener {
+            if (mainMotionLayout.progress == 0F) mainMotionLayout.transitionToEnd()
+
+            mainMotionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
+                override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+                }
+
+                override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+                }
+
+                override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+                    if (p3 == 1.0F) RandomMovieActivity.start(this@MainActivity)
+                }
+
+
+                override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+                    p1.also { println("🚛 p1 $it") }
+
+                }
+            })
+
+        }
     }
 
     private fun setUpViewModel() {
-        viewModel.allMovies?.observeForever { movies ->
+        viewModel.allMovies.observeForever { movies ->
             (list2.adapter as MoviesAdapter).setItems(movies.sortedBy { it.title })
             (list3.adapter as MoviesAdapter).setItems(movies.sortedBy { it.rating })
         }
         viewModel.newMovies.observeForever { movies ->
-            (list.adapter as MoviesAdapter).setItems(movies.sortedBy { it.release_date })
+            movies.also { println("News 🚛 $it") }
+            (list1.adapter as MoviesAdapter).setItems(movies.sortedBy { it.release_date })
             list1Title.text = "New"
         }
+        viewModel.favMovies.observeForever { movies ->
+            movies.also { println("Favs 🚛 $it") }
+            (list0.adapter as MoviesAdapter).setItems(movies)
+            list0.visibility = if (movies.isEmpty()) GONE else VISIBLE
+            list0Title.visibility = list0.visibility
+        }
+
     }
 
     private fun setDarkMode(isDark: Boolean = true) {
@@ -71,8 +104,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun initAdapter() {
-        list.adapter = movieAdapter
-        list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        list0.adapter = movieAdapter0
+        list0.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        list1.adapter = movieAdapter1
+        list1.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         list2.adapter = movieAdapter2
         list2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

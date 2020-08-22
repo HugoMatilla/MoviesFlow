@@ -1,3 +1,4 @@
+<img src="./imgs/MoviesFlow.gif" width="300"/>
 
 # To add
 * Room ✅

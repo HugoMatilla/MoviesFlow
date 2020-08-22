@@ -39,6 +39,9 @@ interface MovieDao :
     @Query("SELECT * FROM $tableName ORDER BY $STARRED DESC")
     fun getAll(): Flow<List<Movie>>
 
+    @Query("SELECT * FROM $tableName WHERE  $STARRED = 1 ORDER BY $RELEASE_DATE DESC")
+    fun getFavs(): Flow<List<Movie>>
+
     @Query("UPDATE $tableName SET $STARRED = :starred WHERE $ID=:id")
     fun starMovieById(id: Long, starred: Boolean)
 

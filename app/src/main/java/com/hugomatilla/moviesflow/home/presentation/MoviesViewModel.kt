@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.hugomatilla.moviesflow.home.domain.GetNewMoviesUseCase
+import com.hugomatilla.moviesflow.home.domain.SubscribeToFavMoviesChanges
 import com.hugomatilla.moviesflow.home.domain.SubscribeToMoviesChanges
 import com.hugomatilla.moviesflow.home.domain.SubscribeToNewMoviesChangesUseCase
 import kotlinx.coroutines.Dispatchers
@@ -14,8 +15,14 @@ import org.koin.core.inject
 class MoviesViewModel : ViewModel(), KoinComponent {
 
     private val subscribeToMoviesChanges: SubscribeToMoviesChanges by inject()
+    private val subscribeToFavMoviesChanges: SubscribeToFavMoviesChanges by inject()
     private val subscribeToNewMoviesChanges: SubscribeToNewMoviesChangesUseCase by inject()
     private val getNewMoviesUseCase: GetNewMoviesUseCase by inject()
+
+    val favMovies = subscribeToFavMoviesChanges
+        .execute()
+        .conflate()
+        .asLiveData()
 
     val allMovies = subscribeToMoviesChanges
         .execute()
@@ -29,6 +36,5 @@ class MoviesViewModel : ViewModel(), KoinComponent {
 
     fun getNewMovies() {
         getNewMoviesUseCase.execute(viewModelScope)
-
     }
 }

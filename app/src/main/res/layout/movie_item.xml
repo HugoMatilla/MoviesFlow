@@ -33,11 +33,12 @@
       android:id="@+id/star"
       android:layout_width="wrap_content"
       android:layout_height="0dp"
-      android:layout_margin="12dp"
+      android:layout_margin="4dp"
       android:gravity="end"
-      android:text="☑️"
+      android:text="★"
+      android:textColor="@color/md_white_1000"
       android:textSize="20dp"
-      android:visibility="invisible"
+      android:visibility="visible"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +51,7 @@
       android:gravity="center"
       android:text="Movie"
       android:textAppearance="?attr/textAppearanceBody1"
+      android:visibility="invisible"
       app:layout_constraintBottom_toBottomOf="@id/image"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent" />

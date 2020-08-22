@@ -18,6 +18,7 @@ class MoviesRepository : KoinComponent {
     private val appDB = AppDB.getInstance()
     fun subscribeToAllMoviesChanges() = appDB.movieDao().getAll()
     fun subscribeToNewMoviesChanges(date: Date) = appDB.movieDao().getNew(date.toText())
+    fun subscribeToFavMoviesChanges() = appDB.movieDao().getFavs()
 
     suspend fun downloadNewMovies(date: Date) {
         val movies = getNewMoviesFromCloud(date.toText()).movies
